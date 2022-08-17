@@ -13,7 +13,7 @@ public class Ciclo3Application {
 
 	@GetMapping("/hello")
 	public String hello(){
-		return "Hola ciclo 3, esto es una prueba nueva";
+		return "Hola ciclo 3, esto es una prueba nueva 17/08/2022";
 
 	}
 
