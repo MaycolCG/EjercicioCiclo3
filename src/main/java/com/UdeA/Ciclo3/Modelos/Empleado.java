@@ -2,23 +2,23 @@ package com.UdeA.Ciclo3.Modelos;
 
 import javax.persistence.*;
 
-
-@Entity
-@Table(name = "Empleados")//Crear Tabla
+@Entity // "ANOTACION" asociar a BD
+@Table(name="Empleado")
 public class Empleado {
-
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy= GenerationType.AUTO)
     private int id;
     private String nombre;
     private String correo;
-    private String empresa;
+    @ManyToOne
+    @JoinColumn(name = "empresa_id")
+    private Empresa empresa;
     private String rol;
 
     public Empleado() {
     }
 
-    public Empleado(String nombre, String correo, String empresa, String rol) {
+    public Empleado(String nombre, String correo, Empresa empresa, String rol) {
         this.nombre = nombre;
         this.correo = correo;
         this.empresa = empresa;
@@ -49,14 +49,6 @@ public class Empleado {
         this.correo = correo;
     }
 
-    public String getEmpresa() {
-        return empresa;
-    }
-
-    public void setEmpresa(String empresa) {
-        this.empresa = empresa;
-    }
-
     public String getRol() {
         return rol;
     }
@@ -64,4 +56,16 @@ public class Empleado {
     public void setRol(String rol) {
         this.rol = rol;
     }
+
+    public Empresa getEmpresa() {
+        return empresa;
+    }
+
+    public void setEmpresa(Empresa empresa) {
+        this.empresa = empresa;
+    }
+
 }
+
+
+
