@@ -21,19 +21,17 @@ public class EmpresaService {
         return empresaList;
     }
 
-    //Metodo que trae un objeto tipo empresa cuando cuernto con el id de la misma
+    //Metodo que trae un objeto tipo empresa cuando cuento con el id de la misma
     public Empresa getEmpresaById (Integer id){
         return empresaRepository.findById(id).get();
     }
 
     //Metodo para guardar o actualizar un objeto tipo empresa
-    public boolean saveOrUpdateEmpresa(Empresa empresa){
-        Empresa emp= empresaRepository.save(empresa);
-        if(empresaRepository.findById(emp.getId())!= null){
-            return true;
-        }
-        return false;
+    public Empresa saveOrUpdateEmpresa(Empresa empresa){
+        Empresa emp=empresaRepository.save(empresa);
+        return emp;
     }
+
 
     //Metodo para eliminar empresas registradas teniendo el id
     public boolean deleteEmpresa(Integer id){
