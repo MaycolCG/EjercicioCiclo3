@@ -9,21 +9,22 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-public class ControllerFull {
+public class ControllerEmpresa {
+
     @Autowired
     EmpresaService empresaService;
 
     @GetMapping("/enterprises")
-    public List<Empresa> verEmpresa(){
+    public List<Empresa> verEmpresa(){ //Listado de empresas
         return empresaService.getAllEmpresas();
     }
 
     @PostMapping("/enterprises")
-    public Empresa guardarEmpresa(@RequestBody Empresa emp){
+    public Empresa guardarEmpresa(@RequestBody Empresa emp){ //Guardar empresas
         return this.empresaService.saveOrUpdateEmpresa(emp);
     }
 
-    @GetMapping(path = "enterprises/{id}")
+    @GetMapping(path = "enterprises/{id}") //Buscar empresa pòr id
     public Empresa empresaPorID(@PathVariable("id") Integer id){
         return this.empresaService.getEmpresaById(id);
     }
@@ -42,10 +43,10 @@ public class ControllerFull {
     public String DeleteEmpresa(@PathVariable("id") Integer id){
         boolean respuesta= this.empresaService.deleteEmpresa(id);
         if (respuesta){  //Si respuesta es true?
-            return "Se elimino la empresa con id" +id;
+            return "Se elimino la empresa con id " +id;
         }
         else{
-            return "No se pudo eliminar la empresa con id"+id;
+            return "No se pudo eliminar la empresa con id "+id;
         }
     }
 }

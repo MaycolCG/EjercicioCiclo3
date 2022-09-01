@@ -6,7 +6,8 @@ import javax.persistence.*;
 @Table(name="Empleado")
 public class Empleado {
     @Id
-    @GeneratedValue(strategy= GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private int id;
     private String nombre;
     private String correo;

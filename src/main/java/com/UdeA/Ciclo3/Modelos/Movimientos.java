@@ -4,9 +4,10 @@ import javax.persistence.*;
 
 @Entity
 @Table(name = "Movimientos")
-public class MovimientoDinero {
+public class Movimientos {
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(columnDefinition = "serial")
     private int id;
     private long monto;
     private String concepto;
@@ -14,10 +15,10 @@ public class MovimientoDinero {
     @JoinColumn (name = "empleado_id")
     private Empleado usuario;
 
-    public MovimientoDinero() {
+    public Movimientos() {
     }
 
-    public MovimientoDinero(long monto, String concepto, Empleado usuario) {
+    public Movimientos(long monto, String concepto, Empleado usuario) {
         this.monto = monto;
         this.concepto = concepto;
         this.usuario = usuario;
