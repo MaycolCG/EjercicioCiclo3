@@ -7,8 +7,7 @@ import javax.persistence.*;
 public class Empleado {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "serial")
-    private int id;
+     private int id;
     private String nombre;
     private String correo;
     @ManyToOne

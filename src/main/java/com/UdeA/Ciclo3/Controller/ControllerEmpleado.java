@@ -25,7 +25,7 @@ public class ControllerEmpleado {
     @PostMapping("/employees")
     //Guardar empleados
     public Optional<Empleado> guardarEmpleado(@RequestBody Empleado emp){
-        return Optional.ofNullable(this.empleadoService.saveOrUpdateEmpleado(emp));
+        return Optional.ofNullable(empleadoService.saveOrUpdateEmpleado(emp));
     }
 
     @GetMapping(path = "employees/{id}")

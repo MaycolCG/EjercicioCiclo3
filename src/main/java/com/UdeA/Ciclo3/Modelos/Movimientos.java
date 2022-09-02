@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class Movimientos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "serial")
     private int id;
     private long monto;
     private String concepto;

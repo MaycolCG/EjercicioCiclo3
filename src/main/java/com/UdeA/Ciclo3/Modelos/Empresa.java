@@ -7,7 +7,6 @@ import javax.persistence.*;
 public class Empresa {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column(columnDefinition = "serial")
     private int id;
     private String nombre;
     private String direccion;

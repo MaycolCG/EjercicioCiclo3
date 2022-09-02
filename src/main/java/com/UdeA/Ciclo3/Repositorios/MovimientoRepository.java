@@ -16,6 +16,6 @@ public interface MovimientoRepository extends JpaRepository<Movimientos, Integer
     public abstract ArrayList<Movimientos> findByEmpleado(Integer id);
 
     // Consulta por Empresa
-    @Query(value="SELECT * from movimientos where empleado_1 in(select id from empleado where empresa_id= ?1)", nativeQuery=true)
+    @Query(value="select * from movimientos where empleado_id in(select id from empleado where empresa_id= ?1)", nativeQuery=true)
     public abstract ArrayList<Movimientos> findByEmpresa(Integer id);
 }
