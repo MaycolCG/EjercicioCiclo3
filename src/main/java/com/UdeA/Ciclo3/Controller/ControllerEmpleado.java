@@ -30,15 +30,15 @@ public class ControllerEmpleado {
 
     @GetMapping("/AgregarEmpleado")
     public String nuevaEmpleado(Model model, @ModelAttribute("mensaje") String mensaje){
-        Empleado emp= new Empleado();
-        model.addAttribute("emp",emp);
+        Empleado empl= new Empleado();
+        model.addAttribute("emp",empl);
         model.addAttribute("mensaje",mensaje);
         return "agregarEmpleado";
     }
 
     @PostMapping("/GuardarEmpleado")
-    public String guardarEmpleado(Empleado emp, RedirectAttributes redirectAttributes){
-        if(empleadoService.saveOrUpdateEmpleado(emp)==true){
+    public String guardarEmpleado(Empleado empl, RedirectAttributes redirectAttributes){
+        if(empleadoService.saveOrUpdateEmpleado(empl)==true){
             redirectAttributes.addFlashAttribute("mensaje","saveOK");
             return "redirect:/VerEmpleados";
         }
@@ -48,16 +48,16 @@ public class ControllerEmpleado {
 
     @GetMapping("/EditarEmpleado/{id}")
     public String editarEmpleado(Model model, @PathVariable Integer id, @ModelAttribute("mensaje") String mensaje){
-        Empleado emp=empleadoService.getEmpleadoByID(id);
+        Empleado empl=empleadoService.getEmpleadoByID(id);
         //Creamos un atributo para el modelo, que se llame igualmente emp y es el que ira al html para llenar o alimentar campos
-        model.addAttribute("emp",emp);
+        model.addAttribute("empl",empl);
         model.addAttribute("mensaje", mensaje);
         return "editarEmpleado";
     }
 
     @PostMapping("/ActualizarEmpleado")
-    public String updateEmpleado(@ModelAttribute("emp") Empleado emp, RedirectAttributes redirectAttributes){
-        if(empleadoService.saveOrUpdateEmpleado(emp)){
+    public String updateEmpleado(@ModelAttribute("empl") Empleado empl, RedirectAttributes redirectAttributes){
+        if(empleadoService.saveOrUpdateEmpleado(empl)){
             redirectAttributes.addFlashAttribute("mensaje","updateOK");
             return "redirect:/VerEmpleados";
         }
