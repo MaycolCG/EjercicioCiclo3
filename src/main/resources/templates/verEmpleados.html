@@ -1,8 +1,8 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Empleados</title>
+  <meta charset="UTF-8">
+  <title>Empleados</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
@@ -49,9 +49,11 @@
 </table>
 
   <!-- vamos a crear un boton que sirva para agregar nuevas empresas -->
-  <button type="button" class="btn btn-info"><a th:href="@{/AgregarEmpleado}" >Agregar Nuevo Empleado</a></button>
+  <button type="button" class="btn btn-success"><a th:href="@{/AgregarEmpleado}" >Agregar Nuevo Empleado</a></button>
   <!-- <input type="button" class="btn btn-info" value="Agregar Empresa" onclick="javascript:window.open('/AgregarEmpresa','','width=600,height=400,left=50,top=50,toolbar=yes');" /> -->
-
+  <br>
+  <br>
+  <a href="/Home" class="btn btn-info" role="button">Atrás</a>
 </div>
 
 <script th:inline="javascript">

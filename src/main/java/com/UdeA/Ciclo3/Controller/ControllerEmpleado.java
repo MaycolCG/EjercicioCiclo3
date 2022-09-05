@@ -23,17 +23,17 @@ public class ControllerEmpleado {
     @GetMapping({"/","/VerEmpleados"})
     public String viewEmpleados(Model model, @ModelAttribute("mensaje") String mensaje){
         List<Empleado> listaEmpleados=empleadoService.getAllEmpleados();
-        model.addAttribute("emplist",listaEmpleados);
+        model.addAttribute("empllist",listaEmpleados);
         model.addAttribute("mensaje",mensaje);
-        return "verEmpleados"; //Llamamos al HTML
+        return "/verEmpleados"; //Llamamos al HTML
     }
 
     @GetMapping("/AgregarEmpleado")
     public String nuevaEmpleado(Model model, @ModelAttribute("mensaje") String mensaje){
         Empleado empl= new Empleado();
-        model.addAttribute("emp",empl);
+        model.addAttribute("empl",empl);
         model.addAttribute("mensaje",mensaje);
-        return "agregarEmpleado";
+        return "/agregarEmpleado";
     }
 
     @PostMapping("/GuardarEmpleado")
@@ -52,7 +52,7 @@ public class ControllerEmpleado {
         //Creamos un atributo para el modelo, que se llame igualmente emp y es el que ira al html para llenar o alimentar campos
         model.addAttribute("empl",empl);
         model.addAttribute("mensaje", mensaje);
-        return "editarEmpleado";
+        return "/editarEmpleado";
     }
 
     @PostMapping("/ActualizarEmpleado")
