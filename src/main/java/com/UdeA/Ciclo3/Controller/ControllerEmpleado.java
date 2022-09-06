@@ -21,7 +21,7 @@ public class ControllerEmpleado {
     @Autowired
     EmpresaService empresaService;
 
-    @GetMapping ("/VerEmpleados")
+    @GetMapping ({"/VerEmpleados"})
     public String viewEmpleados(Model model, @ModelAttribute("mensaje") String mensaje){
         List<Empleado> listaEmpleados=empleadoService.getAllEmpleado();
         model.addAttribute("emplelist",listaEmpleados);

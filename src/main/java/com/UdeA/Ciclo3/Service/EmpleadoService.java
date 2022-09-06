@@ -34,6 +34,7 @@ public class EmpleadoService {
         return empleadoRepository.findByEmpresa(id);
     }
 
+
     //Metodo para guardar o actualizar registros en Empleados
     public boolean saveOrUpdateEmpleado(Empleado empl){
         Empleado emp=empleadoRepository.save(empl);
