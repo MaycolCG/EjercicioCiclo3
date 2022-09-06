@@ -35,8 +35,9 @@
     <th>Editar</th>
     <th>Eliminar</th>
   </tr>
+
   <!--Llenamos la tabla dibujada-->
-  <!--En nuestro controller, creamos en viewEmpresa un modelo con un atributo llamado emplist donde esta guardada la lista de todas las empresas-->
+  <!--En nuestro controller, creamos en viewEmpleados un modelo con un atributo llamado emplelist donde esta guardada la lista de todos los empleados-->
   <tr th:each="empleado : ${emplelist}">
     <td th:text="${empleado.id}"></td>
     <td th:text="${empleado.nombre}"></td>
@@ -50,11 +51,9 @@
 </table>
 
   <!-- vamos a crear un boton que sirva para agregar nuevas empresas -->
-  <button type="button" class="btn btn-success"><a th:href="@{/AgregarEmpleado}" >Agregar Nuevo Empleado</a></button>
+  <th><button type="button" class="btn btn-success"><a th:href="@{/AgregarEmpleado}" >Agregar Nuevo Empleado</a></button></th>
   <!-- <input type="button" class="btn btn-info" value="Agregar Empresa" onclick="javascript:window.open('/AgregarEmpresa','','width=600,height=400,left=50,top=50,toolbar=yes');" /> -->
-  <br>
-  <br>
-  <a href="/VerEmpresas" class="btn btn-info" role="button">Atrás</a>
+  <th><a href="/Home" class="btn btn-info" role="button">Inicio</a></th>
 </div>
 
 <script th:inline="javascript">

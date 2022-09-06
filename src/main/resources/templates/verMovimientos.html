@@ -40,18 +40,15 @@
         <td th:text="${movimientoDinero.id}"></td>
         <td th:text="${movimientoDinero.monto}"></td>
         <td th:text="${movimientoDinero.concepto}"></td>
-        <td th:text="${movimientoDinero.usuario}"></td>
+        <td th:text="${movimientoDinero.usuario.nombre}"></td>
         <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarMovimiento/{id}(id=${movimientoDinero.id})}">Editar</a></button></td>
         <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarMovimiento/{id}(id=${movimientoDinero.id})}">Eliminar</a></button></td>
     </tr>
 </table>
 
     <!-- vamos a crear un boton que sirva para agregar nuevas empresas -->
-    <button type="button" class="btn btn-success"><a th:href="@{/AgregarMovimiento}" >Agregar Nuevo Movimiento</a></button>
-    <!-- <input type="button" class="btn btn-info" value="Agregar Empresa" onclick="javascript:window.open('/AgregarEmpresa','','width=600,height=400,left=50,top=50,toolbar=yes');" /> -->
-    <br>
-    <br>
-    <a href="/VerEmpresas" class="btn btn-info" role="button">Atrás</a>
+    <th><button type="button" class="btn btn-success"><a th:href="@{/AgregarMovimiento}" >Agregar Nuevo Movimiento</a></button></th>
+    <th><a href="/Home" class="btn btn-info" role="button">Inicio</a></th>
 </div>
 
 <script th:inline="javascript">

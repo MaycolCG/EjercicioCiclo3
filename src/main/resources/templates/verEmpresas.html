@@ -50,43 +50,42 @@
 </table>
 
     <!-- vamos a crear un boton que sirva para agregar nuevas empresas -->
-    <button type="button" class="btn btn-success"><a th:href="@{/AgregarEmpresa}" >Agregar Nueva Empresa</a></button>
-    <!-- <input type="button" class="btn btn-info" value="Agregar Empresa" onclick="javascript:window.open('/AgregarEmpresa','','width=600,height=400,left=50,top=50,toolbar=yes');" /> -->
-    <br>
-    <br>
-    <a href="/VerEmpresas" class="btn btn-info" role="button">Atrás</a>
-</div>
+    <th><button type="button" class="btn btn-success"><a th:href="@{/AgregarEmpresa}" >Agregar Nueva Empresa</a></button></th>
+    <!-- <th><button type="button" class="btn btn-primary"><a th:href="@{/VerEmpleados}">Ver lista de Empleados</a></button></th>-->
+    <th> <a href="/Home" class="btn btn-info" role="button">Inicio</a></th>
 
-<script th:inline="javascript">
-    window.onload=function(){
+ </div>
 
-        var msg= [[${mensaje}]];
-        if (msg == "saveOK"){
-            Command : toastr["success"]("Empresa creada con éxito!")
-            }
-        else if (msg == "updateOK"){
-            Command : toastr["success"]("Empresa actualizada con éxito!")
-        }
-        else if (msg == "deleteOK"){
-            Command : toastr["success"]("Empresa eliminada con éxito!")
-        }
-        else if (msg == "deleteError"){
-            Command : toastr["error"]("Empresa no ha sido eliminada!")
-        }
-        toastr.options={
-            "positionClass": "toast-top-right",
-            "showDuration":"300",
-            "showMethod":"fadeIn",
-            "hideMethod":"fadeOut",
-        }
+ <script th:inline="javascript">
+     window.onload=function(){
+
+         var msg= [[${mensaje}]];
+         if (msg == "saveOK"){
+             Command : toastr["success"]("Empresa creada con éxito!")
+             }
+         else if (msg == "updateOK"){
+             Command : toastr["success"]("Empresa actualizada con éxito!")
+         }
+         else if (msg == "deleteOK"){
+             Command : toastr["success"]("Empresa eliminada con éxito!")
+         }
+         else if (msg == "deleteError"){
+             Command : toastr["error"]("Empresa no ha sido eliminada!")
+         }
+         toastr.options={
+             "positionClass": "toast-top-right",
+             "showDuration":"300",
+             "showMethod":"fadeIn",
+             "hideMethod":"fadeOut",
+         }
 
 
-    }
+     }
 
-</script>
+ </script>
 
-</body>
-</html>
+ </body>
+ </html>
 
 
 

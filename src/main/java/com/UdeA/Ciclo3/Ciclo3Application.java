@@ -4,16 +4,17 @@ import com.UdeA.Ciclo3.Modelos.Empresa;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.security.servlet.SecurityAutoConfiguration;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
 
 
-
+@Controller
 @SpringBootApplication (exclude ={SecurityAutoConfiguration.class})
 public class Ciclo3Application {
 
-	@GetMapping({"/Inicial"})
+	@GetMapping({"/Home"})
 	public String Hola(){
-		return "Inicial";
+		return "Home";
 	}
 
 	@GetMapping("/test")
