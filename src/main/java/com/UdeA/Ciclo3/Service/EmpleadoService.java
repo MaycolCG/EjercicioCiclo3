@@ -8,45 +8,48 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Service // Indicamos que es una clase service
 public class EmpleadoService {
 
     @Autowired
-    EmpleadoRepository empleadoRepository; //conectamos esta clase con el repositorio empleado
+    EmpleadoRepository empleadoRepository;
 
-    //Metodo que retornará la lista de empleados usando metodos heredados del Jparpository
-    public List<Empleado> getAllEmpleados(){
-        List<Empleado> empleadoList = new ArrayList<>();
+    //Metodo para ver todos los empleados registrados
+    public List<Empleado> getAllEmpleado(){
+        List<Empleado> empleadoList= new ArrayList<>();
         empleadoRepository.findAll().forEach(empleado -> empleadoList.add(empleado));
-
         return empleadoList;
     }
 
-    //Metodo que trae un objeto tipo empleado cuando cuento con el id del mismo
-    public Empleado getEmpleadoByID(Integer id){
-        return empleadoRepository.findById(id).get();
+    //Metodo para buscar empleados por ID
+    public Optional<Empleado> getEmpleadoById(Integer id){ //Existe optional y asi se podria usar
+
+        return empleadoRepository.findById(id);
     }
 
-    //Metodo para guardar o actualizar un objeto tipo empleado
+    //Metodo para buscar empleados por empresa
+    public ArrayList<Empleado> obtenerPorEmpresa(Integer id){
+        return empleadoRepository.findByEmpresa(id);
+    }
 
-    public boolean saveOrUpdateEmpleado(Empleado empleado){
-        Empleado emp = empleadoRepository.save(empleado);
-        if(empleadoRepository.findById(emp.getId())!= null){
+    //Metodo para guardar o actualizar registros en Empleados
+    public boolean saveOrUpdateEmpleado(Empleado empl){
+        Empleado emp=empleadoRepository.save(empl);
+        if (empleadoRepository.findById(emp.getId())!=null){
             return true;
         }
         return false;
     }
 
-    //Metodo para eliminar empleados registrados teniendo el id
+    //Metodo para eliminar un registro de Empleado por Id
     public boolean deleteEmpleado(Integer id){
-        empleadoRepository.deleteById(id);  //Eliminar
-
-        if (empleadoRepository.findById(id)!=null){  //Verificacion del servicio eliminacion
-            return true;
+        empleadoRepository.deleteById(id);
+        if(this.empleadoRepository.findById(id).isPresent()){
+            return false;
         }
-        return false;
+        return true;
     }
-
 
 }

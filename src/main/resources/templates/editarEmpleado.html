@@ -20,10 +20,10 @@
 <body>
 
 <div class="container">
-  <h1> Edite aqui los datos del Empleado</h1>
+  <h1> Actualice aqui los datos del Empleado</h1>
   <br>
   <!--Crear formulario para llenar los datos de la empresa y guardarlo en el objeto emp -->
-  <form th:action="@{/ActualizarEmpleado}" th:object="${emp}" method="post">
+  <form th:action="@{/ActualizarEmpleado}" th:object="${empl}" method="post">
 
     <!--Campo para id-->
     <div class="row">
@@ -34,6 +34,7 @@
       </div>
     </div>
 
+
     <!--Campo para nombre-->
     <div class="row">
       <div class="form-group col-md-12">
@@ -43,30 +44,37 @@
       </div>
     </div>
 
-    <!--Campo para direccion-->
+    <!--Campo para correo-->
     <div class="row">
       <div class="form-group col-md-12">
-        <label class="col-md-3" for="correo">Correo del Empleado:</label>
+        <label class="col-md-3" for="correo">Correo del empleado:</label>
         <div class="col-md-6">
-          <input type="text" th:field="*{correo}" class="form-control" id="correo" required="required"></div>
+          <input type="email" th:field="*{correo}" class="form-control" id="correo" required="required"></div>
       </div>
     </div>
 
-    <!--Campo para telefono-->
+    <!--Campo para empresa-->
     <div class="row">
       <div class="form-group col-md-12">
-        <label class="col-md-3" for="empresa">Empresa del Empleado:</label>
+        <label class="col-md-3" for="empresa">Empresa a la que pertence:</label>
         <div class="col-md-6">
-          <input type="text" th:field="*{empresa}" class="form-control" id="empresa" required="required"></div>
+          <select th:field="*{empresa}" class="form-control" id="empresa" required="required">
+            <option th:each="empresa : ${emprelist}" th:text="${empresa.nombre}" th:value="${empresa.id}"></option>
+          </select>
+        </div>
       </div>
     </div>
 
-    <!--Campo para NIT-->
+    <!--Campo para Rol-->
     <div class="row">
       <div class="form-group col-md-12">
-        <label class="col-md-3" for="rol">Rol:</label>
+        <label class="col-md-3" for="rol">Rol del empleado:</label>
         <div class="col-md-6">
-          <input type="text" th:field="*{rol}" class="form-control" id="rol" required="required"></div>
+          <select th:field="*{rol}" class="form-control" id="rol" required="required">
+            <option th:value=1>Administrativo</option>
+            <option th:value=2>Operativo</option>
+          </select>
+        </div>
       </div>
     </div>
 

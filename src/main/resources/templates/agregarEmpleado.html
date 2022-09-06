@@ -38,29 +38,37 @@
     <!--Campo para correo-->
     <div class="row">
       <div class="form-group col-md-12">
-        <label class="col-md-3" for="correo">Correo del Empleado:</label>
+        <label class="col-md-3" for="correo">Correo del empleado:</label>
         <div class="col-md-6">
-          <input type="text" th:field="*{correo}" class="form-control" id="correo" required="required"></div>
+          <input type="email" th:field="*{correo}" class="form-control" id="correo" required="required"></div>
       </div>
     </div>
 
     <!--Campo para empresa-->
     <div class="row">
       <div class="form-group col-md-12">
-        <label class="col-md-3" for="empresa">Empresa:</label>
+        <label class="col-md-3" for="empresa">Empresa a la que pertence:</label>
         <div class="col-md-6">
-          <input type="text" th:field="*{empresa}" class="form-control" id="empresa" required="required"></div>
+          <select th:field="*{empresa}" class="form-control" id="empresa" required="required">
+            <option th:each="empresa : ${emprelist}" th:text="${empresa.nombre}" th:value="${empresa.id}"></option>
+          </select>
+        </div>
       </div>
     </div>
 
-    <!--Campo para NIT-->
+    <!--Campo para Rol-->
     <div class="row">
       <div class="form-group col-md-12">
-        <label class="col-md-3" for="rol">Rol:</label>
+        <label class="col-md-3" for="rol">Rol del empleado:</label>
         <div class="col-md-6">
-          <input type="text" th:field="*{rol}" class="form-control" id="rol" required="required"></div>
+          <select th:field="*{rol}" class="form-control" id="rol" required="required">
+            <option th:value=1>Administrativo</option>
+            <option th:value=2>Operativo</option>
+          </select>
+        </div>
       </div>
     </div>
+
 
     <!--Boton para enviar todo y ejecutar accion -->
     <div class="row">
