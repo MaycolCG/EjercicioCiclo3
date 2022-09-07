@@ -31,7 +31,6 @@ public class MovimientoService {
 
     public boolean saveOrUpdateMovimientos(MovimientoDinero movimientoDinero){
         MovimientoDinero mov= movimientosRepository.save(movimientoDinero);
-
         if(movimientosRepository.findById(mov.getId())!=null){
             return true;
         }

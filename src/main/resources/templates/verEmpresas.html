@@ -22,7 +22,8 @@
 <body>
 
 <div class="container">
-    <h1> Lista de Empresas</h1>
+    <br>
+    <h1> Lista de Empresas<th><button type="button" style="float: right;" class="btn btn-success"><a th:href="@{/AgregarEmpresa}" >Agregar Nueva Empresa</a></button></th></h1>
     <!--Dibujamos la tabla-->
     <br><table class="table table-bordered">
     <tr>
@@ -45,17 +46,18 @@
         <td th:text="${empresa.direccion}"></td>
         <td th:text="${empresa.telefono}"></td>
         <td th:text="${empresa.NIT}"></td>
+
         <td><button type="button" class="btn btn-info"><a th:href="@{/Empresa/{id}/Empleados (id=${empresa.id})}">Ver</a></button></td>
-        <td><button type="button" class="btn btn-info"><a th:href="@{/Empresa/{id}/Movimientos (id=${empresa.id})}">Ver</a></button></td>
+        <td><button type="button" class="btn btn-primary"><a th:href="@{/Empresa/{id}/Movimientos (id=${empresa.id})}">Ver</a></button></td>
         <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpresa/{id}(id=${empresa.id})}">Editar</a></button></td>
         <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarEmpresa/{id}(id=${empresa.id})}">Eliminar</a></button></td>
     </tr>
 </table>
 
     <!-- vamos a crear un boton que sirva para agregar nuevas empresas -->
-    <th><button type="button" class="btn btn-success"><a th:href="@{/AgregarEmpresa}" >Agregar Nueva Empresa</a></button></th>
+
     <!-- <th><button type="button" class="btn btn-primary"><a th:href="@{/VerEmpleados}">Ver lista de Empleados</a></button></th>-->
-    <th> <a href="javascript: history.go(-1)" class="btn btn-info" role="button">Atrás</a></th>
+    <th> <a href="javascript: history.go(-1)" style="float: right;" class="btn btn-primary" role="button">Atrás</a></th>
 
  </div>
 

@@ -67,7 +67,7 @@ public class ControllerEmpleado {
             return "redirect:/VerEmpleados";
         }
         redirectAttributes.addFlashAttribute("mensaje","updateError");
-        return "redirect:/EditarEmpleado";
+        return "redirect:/EditarEmpleado/"+empl.getId();
 
     }
 

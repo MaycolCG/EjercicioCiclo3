@@ -22,7 +22,8 @@
 <body>
 
 <div class="container">
-    <h1> Lista de Movimientos</h1>
+    <br>
+    <th><h1> Lista de Movimientos <button style="float: right;" type="button" class="btn btn-success"><a th:href="@{/AgregarMovimiento}" >Agregar Nuevo Movimiento</a></button></h1></th>
     <!--Dibujamos la tabla-->
     <br><table class="table table-bordered">
     <tr>
@@ -39,7 +40,14 @@
     <tr th:each="movimientoDinero : ${movlist}">
         <td th:text="${movimientoDinero.id}"></td>
         <td th:text="${movimientoDinero.monto}"></td>
-        <td th:text="${movimientoDinero.concepto}"></td>
+        <td th:if="${movimientoDinero.concepto=='1'}">Papeleria</td>
+        <td th:if="${movimientoDinero.concepto=='2'}">Servicios Publicos/Privados</td>
+        <td th:if="${movimientoDinero.concepto=='3'}">Operativos</td>
+        <td th:if="${movimientoDinero.concepto=='4'}">Caja menor</td>
+        <td th:if="${movimientoDinero.concepto=='5'}">Tributario</td>
+        <td th:if="${movimientoDinero.concepto=='6'}">Mobiliario</td>
+        <td th:if="${movimientoDinero.concepto=='7'}">Maquinaria y Equipo</td>
+        <td th:if="${movimientoDinero.concepto=='8'}">Nomina</td>
         <td th:text="${movimientoDinero.usuario.nombre}"></td>
         <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarMovimiento/{id}(id=${movimientoDinero.id})}">Editar</a></button></td>
         <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarMovimiento/{id}(id=${movimientoDinero.id})}">Eliminar</a></button></td>
@@ -47,8 +55,8 @@
 </table>
 
     <!-- vamos a crear un boton que sirva para agregar nuevas empresas -->
-    <th><button type="button" class="btn btn-success"><a th:href="@{/AgregarMovimiento}" >Agregar Nuevo Movimiento</a></button></th>
-    <th><a href="javascript: history.go(-1)" class="btn btn-info" role="button">Atrás</a></th>
+
+    <th><a href="/Home" style="float: right;"class="btn btn-primary" role="button">Atrás</a></th>
 </div>
 
 <script th:inline="javascript">
