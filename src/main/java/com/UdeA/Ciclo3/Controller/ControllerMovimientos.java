@@ -1,5 +1,6 @@
 package com.UdeA.Ciclo3.Controller;
 
+import com.UdeA.Ciclo3.Modelos.Empleado;
 import com.UdeA.Ciclo3.Modelos.MovimientoDinero;
 import com.UdeA.Ciclo3.Service.MovimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -71,5 +72,12 @@ public class ControllerMovimientos {
         }
         redirectAttributes.addFlashAttribute("mensaje", "deleteError");
         return "redirect:/VerMovimiento";
+    }
+
+    @GetMapping("/Empresa/{id}/Movimientos") //Filtrar los empleados por empresa
+    public String verMovimientosPorEmpresa(@PathVariable("id") Integer id, Model model){
+        List<MovimientoDinero> listaMovimientos = movimientoService.obtenerPorEmpresa(id);
+        model.addAttribute("movlist",listaMovimientos);
+        return "verMovimientos"; //Llamamos al html con el emplelist de los empleados filtrados
     }
 }

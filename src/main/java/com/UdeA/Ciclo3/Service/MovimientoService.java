@@ -1,5 +1,6 @@
 package com.UdeA.Ciclo3.Service;
 
+import com.UdeA.Ciclo3.Modelos.Empleado;
 import com.UdeA.Ciclo3.Modelos.MovimientoDinero;
 import com.UdeA.Ciclo3.Repositorios.MovimientosRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -46,5 +47,10 @@ public class MovimientoService {
             return true;
         }
         return false;
+    }
+
+    //Metodo para buscar empleados por empresa
+    public ArrayList<MovimientoDinero> obtenerPorEmpresa(Integer id){
+        return movimientosRepository.findByEmpresa(id);
     }
 }

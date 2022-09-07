@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <title>Editar Empresa - Ciclo3</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <style>
+    a{
+    color:white;
+    }
+    a:hover {
+    color: black;
+    text-decoration:none;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+  <h1> Edite aqui los datos del Movimiento</h1>
+  <br>
+  <!--Crear formulario para llenar los datos de la empresa y guardarlo en el objeto emp -->
+  <form th:action="@{/ActualizarMovimiento}" th:object="${mov}" method="post">
+
+    <!--Campo para id-->
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label class="col-md-3" for="id">ID del Movimiento:</label>
+        <div class="col-md-6">
+          <input type="text" th:field="*{id}" class="form-control" id="id" required="required" readonly></div>
+      </div>
+    </div>
+
+    <!--Campo para nombre-->
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label class="col-md-3" for="monto">Monto del Movimiento:</label>
+        <div class="col-md-6">
+          <input type="text" th:field="*{monto}" class="form-control" id="monto" required="required"></div>
+      </div>
+    </div>
+
+    <!--Campo para direccion-->
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label class="col-md-3" for="concepto">Concepto del Movimiento:</label>
+        <div class="col-md-6">
+          <input type="text" th:field="*{concepto}" class="form-control" id="concepto" required="required"></div>
+      </div>
+    </div>
+
+    <!--Campo para telefono-->
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label class="col-md-3" for="usuario">Usuario:</label>
+        <div class="col-md-6">
+          <input type="text" th:field="*{usuario}" class="form-control" id="usuario" required="required"></div>
+      </div>
+    </div>
+
+    <!--Boton para enviar todo y ejecutar accion -->
+    <div class="row">
+      <div class="col-md-2">
+        <button class="btn btn-success">Actualizar Movimiento</button>
+      </div>
+    </div>
+
+  </form>
+
+  <br>
+  <a href="javascript: history.go(-1)" class="btn btn-info" role="button">Atrás</a>
+
+</div>
+</body>
+</html>

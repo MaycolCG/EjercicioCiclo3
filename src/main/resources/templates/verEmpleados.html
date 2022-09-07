@@ -53,7 +53,7 @@
   <!-- vamos a crear un boton que sirva para agregar nuevas empresas -->
   <th><button type="button" class="btn btn-success"><a th:href="@{/AgregarEmpleado}" >Agregar Nuevo Empleado</a></button></th>
   <!-- <input type="button" class="btn btn-info" value="Agregar Empresa" onclick="javascript:window.open('/AgregarEmpresa','','width=600,height=400,left=50,top=50,toolbar=yes');" /> -->
-  <th><a href="/Home" class="btn btn-info" role="button">Inicio</a></th>
+  <th><a href="javascript: history.go(-1)" class="btn btn-info" role="button">Atrás</a></th>
 </div>
 
 <script th:inline="javascript">
