@@ -23,7 +23,7 @@
 <body>
 
 <div class="container">
-  <h1> Lista de Empleados</h1>
+  <th><h1> Lista de Empleados <button type="button" style="float: right;" class="btn btn-success"><a th:href="@{/AgregarEmpleado}" >Agregar Nuevo Empleado</a></button></h1></th>
   <!--Dibujamos la tabla-->
   <br><table class="table table-bordered">
   <tr>
@@ -53,9 +53,12 @@
 </table>
 
   <!-- vamos a crear un boton que sirva para agregar nuevas empresas -->
-  <th><button type="button" class="btn btn-success"><a th:href="@{/AgregarEmpleado}" >Agregar Nuevo Empleado</a></button></th>
+
   <!-- <input type="button" class="btn btn-info" value="Agregar Empresa" onclick="javascript:window.open('/AgregarEmpresa','','width=600,height=400,left=50,top=50,toolbar=yes');" /> -->
-  <th><a href="javascript: history.go(-1)" class="btn btn-primary" role="button">Atrás</a></th>
+  <th><a href="javascript: history.go(-1)" style="float: right;" class="btn btn-info" role="button">Atrás</a></th>
+  <br>
+  <br>
+  <th><a href="/Home" style="float: right;"class="btn btn-primary" role="button">Inicio</a></th>
 </div>
 
 <script th:inline="javascript">
