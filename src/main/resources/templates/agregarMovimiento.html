@@ -51,14 +51,13 @@
     <!--Campo para monto-->
     <div class="row">
       <div class="form-group col-md-12">
-        <label class="col-md-3" for="monto">Monto del Movimiento:</label>
+        <label class="col-md-3" for="monto">Valor del Movimiento:</label>
         <div class="col-md-6">
           <input type="number" th:field="*{monto}" class="form-control" id="monto" required="required"></div>
       </div>
     </div>
 
-    <!--Campo para empresa-->
-    <!--Campo para empleado (usuario responsable)-->
+     <!--Campo para empleado (usuario responsable)-->
     <div class="row">
       <div class="form-group col-md-12">
         <label class="col-md-3" for="usuario">Empleado responsable:</label>
@@ -70,15 +69,31 @@
       </div>
     </div>
 
+    <!--Campo para fecha-->
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label class="col-md-3" for="fecha">Fecha del movimiento:</label>
+        <div class="col-md-6">
+          <input type="date" th:field="*{fecha}" class="form-control" id="fecha" required="required" readonly></div>
+      </div>
+    </div>
+
 
 
     <!--Boton para enviar todo y ejecutar accion -->
     <br>
     <th><button class="btn btn-success" >Crear Movimiento </button></th>
+
         <!-- <input type="button" class="btn btn-success" onclick="javascript:window.close();" value="Crear Empresa" /> -->
     <th><a href="/VerMovimientos" class="btn btn-info" role="button">Atrás</a></th>
 
   </form>
+
+  <script th:inline="javascript">
+  window.onload=function(){
+  document.getElementById("fecha").value=new Date().toJSON().slice(0,10).replace(/-/g,'-');
+  }
+  </script>
 
 
 

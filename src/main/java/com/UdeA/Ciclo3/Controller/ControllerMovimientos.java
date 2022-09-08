@@ -22,12 +22,15 @@ public class ControllerMovimientos {
     @Autowired
     EmpleadoService empleadoService;
 
-    @GetMapping({"/","/VerMovimientos"})
+    @GetMapping ("/VerMovimientos")// Controlador que nos lleva al template donde veremos todos los movimientos
     public String viewMovimientos(Model model, @ModelAttribute("mensaje") String mensaje){
         List<MovimientoDinero> listaMovimientos=movimientoService.getAllMovimientos();
         model.addAttribute("movlist",listaMovimientos);
         model.addAttribute("mensaje",mensaje);
+        Long sumaMonto=movimientoService.obtenerSumaMontos();
+        model.addAttribute("SumaMontos",sumaMonto);//Mandamos la suma de todos los montos a la plantilla
         return "verMovimientos"; //Llamamos al HTML
+
     }
 
     @GetMapping("/AgregarMovimiento")
@@ -85,17 +88,23 @@ public class ControllerMovimientos {
     }
 
 
-    @GetMapping("/Empresa/{id}/Movimientos") //Filtrar los empleados por empresa
-    public String verMovimientosPorEmpresa(@PathVariable("id") Integer id, Model model){
-        List<MovimientoDinero> listaMovimientos = movimientoService.obtenerPorEmpresa(id);
-        model.addAttribute("movlist",listaMovimientos);
-        return "verMovimientos"; //Llamamos al html con el emplelist de los empleados filtrados
+    @GetMapping("/Empleado/{id}/Movimientos") //Filtro de movimientos por empleados
+    public String movimientosPorEmpleado(@PathVariable("id")Integer id, Model model){
+        List<MovimientoDinero> movlist = movimientoService.obtenerPorEmpleado(id);
+        model.addAttribute("movlist",movlist);
+        Long sumaMonto=movimientoService.MontosPorEmpleado(id);
+        model.addAttribute("SumaMontos",sumaMonto);
+        return "verMovimientos"; //Llamamos al HTML
     }
 
-    @GetMapping("/Empleado/{id}/Movimientos") //Filtrar los empleados por Empleado
-    public String verMovimientosPorEmpleado(@PathVariable("id") Integer id, Model model){
-        List<MovimientoDinero> listaMovimientos = movimientoService.obtenerPorEmpresa(id);
-        model.addAttribute("movlist",listaMovimientos);
-        return "verMovimientos"; //Llamamos al html con el emplelist de los empleados filtrados
+    @GetMapping("/Empresa/{id}/Movimientos") //Filtro de movimientos por empresa
+    public String movimientosPorEmpresa(@PathVariable("id")Integer id, Model model){
+        List<MovimientoDinero> movlist = movimientoService.obtenerPorEmpresa(id);
+        model.addAttribute("movlist",movlist);
+        Long sumaMonto=movimientoService.MontosPorEmpresa(id);
+        model.addAttribute("SumaMontos",sumaMonto);
+        return "verMovimientos"; //Llamamos al HTML
     }
+
+
 }
