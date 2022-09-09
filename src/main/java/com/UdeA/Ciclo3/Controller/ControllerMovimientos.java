@@ -3,9 +3,12 @@ package com.UdeA.Ciclo3.Controller;
 import com.UdeA.Ciclo3.Modelos.Empleado;
 import com.UdeA.Ciclo3.Modelos.Empresa;
 import com.UdeA.Ciclo3.Modelos.MovimientoDinero;
+import com.UdeA.Ciclo3.Repositorios.MovimientosRepository;
 import com.UdeA.Ciclo3.Service.EmpleadoService;
 import com.UdeA.Ciclo3.Service.MovimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -22,16 +25,23 @@ public class ControllerMovimientos {
     @Autowired
     EmpleadoService empleadoService;
 
+    @Autowired
+    MovimientosRepository movimientosRepository;
+
     @GetMapping ("/VerMovimientos")// Controlador que nos lleva al template donde veremos todos los movimientos
-    public String viewMovimientos(Model model, @ModelAttribute("mensaje") String mensaje){
-        List<MovimientoDinero> listaMovimientos=movimientoService.getAllMovimientos();
-        model.addAttribute("movlist",listaMovimientos);
+    public String viewMovimientos(@RequestParam(value="pagina", required=false, defaultValue = "0") int NumeroPagina,
+                                  @RequestParam(value="medida", required=false, defaultValue = "5") int medida,
+                                  Model model, @ModelAttribute("mensaje") String mensaje){
+        Page<MovimientoDinero> paginaMovimientos= movimientosRepository.findAll(PageRequest.of(NumeroPagina,medida));
+        model.addAttribute("movlist",paginaMovimientos.getContent());
+        model.addAttribute("paginas", new int[paginaMovimientos.getTotalPages()] );
+        model.addAttribute("paginaActual", NumeroPagina);
         model.addAttribute("mensaje",mensaje);
         Long sumaMonto=movimientoService.obtenerSumaMontos();
         model.addAttribute("SumaMontos",sumaMonto);//Mandamos la suma de todos los montos a la plantilla
         return "verMovimientos"; //Llamamos al HTML
-
     }
+
 
     @GetMapping("/AgregarMovimiento")
     public String nuevoMovimiento(Model model, @ModelAttribute("mensaje") String mensaje){
