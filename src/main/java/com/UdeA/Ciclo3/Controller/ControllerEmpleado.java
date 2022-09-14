@@ -5,6 +5,9 @@ import com.UdeA.Ciclo3.Modelos.Empresa;
 import com.UdeA.Ciclo3.Service.EmpleadoService;
 import com.UdeA.Ciclo3.Service.EmpresaService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -41,6 +44,8 @@ public class ControllerEmpleado {
 
     @PostMapping("/GuardarEmpleado")
     public String guardarEmpleado(Empleado empl, RedirectAttributes redirectAttributes){
+       String passEncriptada=passwordEncoder().encode(empl.getPassword()); //Contraseña encriptada
+        empl.setPassword(passEncriptada);
         if(empleadoService.saveOrUpdateEmpleado(empl)==true){
             redirectAttributes.addFlashAttribute("mensaje","saveOK");
             return "redirect:/VerEmpleados";
@@ -62,6 +67,8 @@ public class ControllerEmpleado {
 
     @PostMapping("/ActualizarEmpleado")
     public String updateEmpleado(@ModelAttribute("empl") Empleado empl, RedirectAttributes redirectAttributes){
+      String passEncriptada=passwordEncoder().encode(empl.getPassword()); //Contraseña encriptada
+        empl.setPassword(passEncriptada);
         if(empleadoService.saveOrUpdateEmpleado(empl)){
             redirectAttributes.addFlashAttribute("mensaje","updateOK");
             return "redirect:/VerEmpleados";
@@ -86,6 +93,12 @@ public class ControllerEmpleado {
         List<Empleado> listaEmpleados = empleadoService.obtenerPorEmpresa(id);
         model.addAttribute("emplelist",listaEmpleados);
         return "verEmpleados"; //Llamamos al html con el emplelist de los empleados filtrados
+    }
+
+    //Metodo para encriptar contraseñas
+   @Bean
+    public PasswordEncoder passwordEncoder(){
+        return new BCryptPasswordEncoder();
     }
 
 }

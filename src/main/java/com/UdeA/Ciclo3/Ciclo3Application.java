@@ -9,10 +9,10 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 
 @Controller
-@SpringBootApplication (exclude ={SecurityAutoConfiguration.class})
+@SpringBootApplication
 public class Ciclo3Application {
 
-	@GetMapping({"/Home"})
+	@GetMapping({"/"})
 	public String Hola(){
 		return "Home";
 	}

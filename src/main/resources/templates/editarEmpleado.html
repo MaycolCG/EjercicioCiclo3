@@ -53,13 +53,13 @@
       </div>
     </div>
 
-    <!--Campo para empleado (usuario responsable)-->
+    <!--Campo para empresa-->
     <div class="row">
       <div class="form-group col-md-12">
-        <label class="col-md-3" for="usuario">Empleado responsable:</label>
+        <label class="col-md-3" for="empresa">Empresa a la que pertence:</label>
         <div class="col-md-6">
-          <select th:field="*{usuario}" class="form-control" id="usuario" required="required">
-            <option th:each="empleado : ${emplelist}" th:text="${empleado.nombre}" th:value="${empleado.id}"></option>
+          <select th:field="*{empresa}" class="form-control" id="empresa" required="required">
+            <option th:each="empresa : ${emprelist}" th:text="${empresa.nombre}" th:value="${empresa.id}"></option>
           </select>
         </div>
       </div>
@@ -72,8 +72,30 @@
         <label class="col-md-3" for="rol">Rol del empleado:</label>
         <div class="col-md-6">
           <select th:field="*{rol}" class="form-control" id="rol" required="required">
-            <option th:value=1>Administrativo</option>
-            <option th:value=2>Operativo</option>
+            <option th:value="ROLE_ADMIN">Administrativo</option>
+            <option th:value="ROLE_USER">Operativo</option>
+          </select>
+        </div>
+      </div>
+    </div>
+
+    <!--Campo para contraseña-->
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label class="col-md-3" for="password">Contraseña del empleado:</label>
+        <div class="col-md-6">
+          <input type="password" th:field="*{password}" class="form-control" id="password"></div>
+      </div>
+    </div>
+
+    <!--Campo para Estado-->
+    <div class="row">
+      <div class="form-group col-md-12">
+        <label class="col-md-3" for="estado">Estado actual del empleado:</label>
+        <div class="col-md-6">
+          <select th:field="*{estado}" class="form-control" id="estado" required="required">
+            <option th:value=1>Activo</option>
+            <option th:value=0>Inactivo</option>
           </select>
         </div>
       </div>

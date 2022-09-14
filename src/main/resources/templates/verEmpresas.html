@@ -23,19 +23,22 @@
 
 <div class="container">
     <br>
+    <button type="button" class="btn btn-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesión</a></button>
+    <br>
     <h1> Lista de Empresas<th><button type="button" style="float: right;" class="btn btn-success"><a th:href="@{/AgregarEmpresa}" >Agregar Nueva Empresa</a></button></th></h1>
     <!--Dibujamos la tabla-->
     <br><table class="table table-bordered">
     <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Dirección</th>
-        <th>Telefono</th>
-        <th>NIT</th>
-        <th>Empleados</th>
-        <th>Movimientos</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+
+        <th class="text-center">ID</th>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Dirección</th>
+        <th class="text-center">Telefono</th>
+        <th class="text-center">NIT</th>
+        <th class="text-center">Empleados</th>
+        <th class="text-center">Movimientos</th>
+        <th class="text-center">Editar</th>
+        <th class="text-center">Eliminar</th>
     </tr>
 
     <!--Llenamos la tabla dibujada-->
@@ -47,10 +50,10 @@
         <td th:text="${empresa.telefono}"></td>
         <td th:text="${empresa.NIT}"></td>
 
-        <td><button type="button" class="btn btn-info"><a th:href="@{/Empresa/{id}/Empleados (id=${empresa.id})}">Ver</a></button></td>
-        <td><button type="button" class="btn btn-primary"><a th:href="@{/Empresa/{id}/Movimientos (id=${empresa.id})}">Ver</a></button></td>
-        <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpresa/{id}(id=${empresa.id})}">Editar</a></button></td>
-        <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarEmpresa/{id}(id=${empresa.id})}">Eliminar</a></button></td>
+        <td class="text-center"><button type="button" class="btn btn-info"><a th:href="@{/Empresa/{id}/Empleados (id=${empresa.id})}">Ver</a></button></td>
+        <td class="text-center"><button type="button" class="btn btn-primary"><a th:href="@{/Empresa/{id}/Movimientos (id=${empresa.id})}">Ver</a></button></td>
+        <td class="text-center"><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpresa/{id}(id=${empresa.id})}">Editar</a></button></td>
+        <td class="text-center"><button type="button" class="btn btn-danger"><a th:href="@{/EliminarEmpresa/{id}(id=${empresa.id})}">Eliminar</a></button></td>
     </tr>
 </table>
 
@@ -60,7 +63,7 @@
     <th><a href="javascript: history.go(-1)" style="float: right;" class="btn btn-info" role="button">Atrás</a></th>
     <br>
     <br>
-    <th><a href="/Home" style="float: right;"class="btn btn-primary" role="button">Inicio</a></th>
+    <th><a href="/" style="float: right;"class="btn btn-primary" role="button">Inicio</a></th>
 
  </div>
 
