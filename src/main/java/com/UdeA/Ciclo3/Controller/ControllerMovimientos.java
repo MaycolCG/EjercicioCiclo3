@@ -1,14 +1,19 @@
 package com.UdeA.Ciclo3.Controller;
 
+
 import com.UdeA.Ciclo3.Modelos.Empleado;
-import com.UdeA.Ciclo3.Modelos.Empresa;
 import com.UdeA.Ciclo3.Modelos.MovimientoDinero;
 import com.UdeA.Ciclo3.Repositorios.MovimientosRepository;
 import com.UdeA.Ciclo3.Service.EmpleadoService;
 import com.UdeA.Ciclo3.Service.MovimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -45,12 +50,14 @@ public class ControllerMovimientos {
 
     @GetMapping("/AgregarMovimiento")
     public String nuevoMovimiento(Model model, @ModelAttribute("mensaje") String mensaje){
-        MovimientoDinero mov= new MovimientoDinero();
-        model.addAttribute("mov",mov);
+        MovimientoDinero movimiento= new MovimientoDinero();
+        model.addAttribute("mov",movimiento);
         model.addAttribute("mensaje",mensaje);
-        List<Empleado> listaEmpleados= empleadoService.getAllEmpleado();
-        model.addAttribute("emplelist",listaEmpleados);
-        return "agregarMovimiento";
+        Authentication auth= SecurityContextHolder.getContext().getAuthentication();
+        String correo=auth.getName();
+        Integer idEmpleado=movimientoService.IdPorCorreo(correo);
+        model.addAttribute("idEmpleado",idEmpleado);
+        return "agregarMovimiento"; //Llamar HTML
     }
 
     @PostMapping("/GuardarMovimiento")

@@ -67,8 +67,12 @@ public class ControllerEmpleado {
 
     @PostMapping("/ActualizarEmpleado")
     public String updateEmpleado(@ModelAttribute("empl") Empleado empl, RedirectAttributes redirectAttributes){
-      String passEncriptada=passwordEncoder().encode(empl.getPassword()); //Contraseña encriptada
-        empl.setPassword(passEncriptada);
+        Integer id=empl.getId(); //Sacamos el id del objeto empl
+        String Oldpass=empleadoService.getEmpleadoById(id).get().getPassword(); //Con ese id consultamos la contraseña que ya esta en la base
+        if(!empl.getPassword().equals(Oldpass)){
+            String passEncriptada=passwordEncoder().encode(empl.getPassword());
+            empl.setPassword(passEncriptada);
+        }
         if(empleadoService.saveOrUpdateEmpleado(empl)){
             redirectAttributes.addFlashAttribute("mensaje","updateOK");
             return "redirect:/VerEmpleados";
@@ -77,6 +81,7 @@ public class ControllerEmpleado {
         return "redirect:/EditarEmpleado/"+empl.getId();
 
     }
+
 
     @GetMapping("/EliminarEmpleado/{id}")
     public String eliminarEmpleado(@PathVariable Integer id, RedirectAttributes redirectAttributes){
@@ -93,6 +98,12 @@ public class ControllerEmpleado {
         List<Empleado> listaEmpleados = empleadoService.obtenerPorEmpresa(id);
         model.addAttribute("emplelist",listaEmpleados);
         return "verEmpleados"; //Llamamos al html con el emplelist de los empleados filtrados
+    }
+
+    //Controlador que me lleva al template de No autorizado
+    @RequestMapping(value="/Denegado")
+    public String accesoDenegado(){
+        return "accessDenied";
     }
 
     //Metodo para encriptar contraseñas
