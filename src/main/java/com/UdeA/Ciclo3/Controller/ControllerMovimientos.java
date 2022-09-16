@@ -81,8 +81,6 @@ public class ControllerMovimientos {
         return "editarMovimiento";
     }
 
-
-
     @PostMapping("/ActualizarMovimiento")
     public String updateMovimiento(@ModelAttribute("mov") MovimientoDinero mov, RedirectAttributes redirectAttributes){
         if(movimientoService.saveOrUpdateMovimientos(mov)){

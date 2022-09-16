@@ -22,7 +22,8 @@
 <body>
 
 <div class="container">
-    <p th:inline="text" class="text-right">User: [[${#httpServletRequest.remoteUser}]]</p>
+    <p th:inline="text" class="label label-default" style="float: right;"  >User: [[${#httpServletRequest.remoteUser}]]</p>
+    <br>
     <br>
     <button type="button" class="btn btn-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesión</a></button>
     <br>
@@ -61,7 +62,7 @@
 
     <!-- CAMPO PARA EL AREA DE NAVEGACION -->
     <nav aria-label="Ejemplo navegacion">
-        <ul class="pagination mt-4">
+        <ul class="pagination pagination-sm">
             <li th:class="${paginaActual==estado.index} ? 'active' : '' " th:each="pagina, estado: ${paginas}" class="page-item">
                 <a th:href="@{/VerMovimientos/(pagina=${estado.index})}" class="page-link" th:text="${estado.index}+1"></a>
             </li>
