@@ -7,13 +7,10 @@ import com.UdeA.Ciclo3.Repositorios.MovimientosRepository;
 import com.UdeA.Ciclo3.Service.EmpleadoService;
 import com.UdeA.Ciclo3.Service.MovimientoService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.context.annotation.Bean;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
@@ -33,7 +30,7 @@ public class ControllerMovimientos {
     @Autowired
     MovimientosRepository movimientosRepository;
 
-    @GetMapping ("/VerMovimientos")// Controlador que nos lleva al template donde veremos todos los movimientos
+    @GetMapping ("/VerMovimientos") //Controlador que nos lleva al template donde veremos todos los movimientos
     public String viewMovimientos(@RequestParam(value="pagina", required=false, defaultValue = "0") int NumeroPagina,
                                   @RequestParam(value="medida", required=false, defaultValue = "5") int medida,
                                   Model model, @ModelAttribute("mensaje") String mensaje){

@@ -59,7 +59,6 @@ public class ControllerEmpresa {
         }
         redirectAttributes.addFlashAttribute("mensaje", "updateError");
         return "redirect:/EditarEmpresa/"+emp.getId();
-
     }
 
     @GetMapping("/EliminarEmpresa/{id}")

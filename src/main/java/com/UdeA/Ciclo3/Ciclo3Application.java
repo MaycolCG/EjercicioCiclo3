@@ -13,7 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 public class Ciclo3Application {
 
 	@GetMapping({"/"})
-	public String Hola(){
+	public String Inicio(){
 		return "Home";
 	}
 

@@ -25,7 +25,9 @@
 <body>
 
 <div class="container">
-  <p th:inline="text" class="text-right">User: [[${#httpServletRequest.remoteUser}]]</p>
+  <p th:inline="text" class="label label-default" style="float: right;"  >User: [[${#httpServletRequest.remoteUser}]]</p>
+  <br>
+  <br>
   <button type="button" class="btn btn-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesión</a></button>
   <br>
   <th><h1> Lista de Empleados <button type="button" style="float: right;" class="btn btn-success"><a th:href="@{/AgregarEmpleado}" >Agregar Nuevo Empleado</a></button></h1></th>
