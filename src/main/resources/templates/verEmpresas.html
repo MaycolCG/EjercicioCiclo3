@@ -22,17 +22,25 @@
 <body>
 
 <div class="container">
-    <h1> Lista de Empresas</h1>
+    <p th:inline="text" class="label label-default" style="float: right;"  >User: [[${#httpServletRequest.remoteUser}]]</p>
+    <br>
+    <br>
+    <button type="button" class="btn btn-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesión</a></button>
+    <br>
+    <h1> Lista de Empresas<th><button type="button" style="float: right;" class="btn btn-success"><a th:href="@{/AgregarEmpresa}" >Agregar Nueva Empresa</a></button></th></h1>
     <!--Dibujamos la tabla-->
     <br><table class="table table-bordered">
     <tr>
-        <th>ID</th>
-        <th>Nombre</th>
-        <th>Dirección</th>
-        <th>Telefono</th>
-        <th>NIT</th>
-        <th>Editar</th>
-        <th>Eliminar</th>
+
+        <th class="text-center">ID</th>
+        <th class="text-center">Nombre</th>
+        <th class="text-center">Dirección</th>
+        <th class="text-center">Telefono</th>
+        <th class="text-center">NIT</th>
+        <th class="text-center">Empleados</th>
+        <th class="text-center">Movimientos</th>
+        <th class="text-center">Editar</th>
+        <th class="text-center">Eliminar</th>
     </tr>
 
     <!--Llenamos la tabla dibujada-->
@@ -43,46 +51,54 @@
         <td th:text="${empresa.direccion}"></td>
         <td th:text="${empresa.telefono}"></td>
         <td th:text="${empresa.NIT}"></td>
-        <td><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpresa/{id}(id=${empresa.id})}">Editar</a></button></td>
-        <td><button type="button" class="btn btn-danger"><a th:href="@{/EliminarEmpresa/{id}(id=${empresa.id})}">Eliminar</a></button></td>
+
+        <td class="text-center"><button type="button" class="btn btn-info"><a th:href="@{/Empresa/{id}/Empleados (id=${empresa.id})}">Ver</a></button></td>
+        <td class="text-center"><button type="button" class="btn btn-primary"><a th:href="@{/Empresa/{id}/Movimientos (id=${empresa.id})}">Ver</a></button></td>
+        <td class="text-center"><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpresa/{id}(id=${empresa.id})}">Editar</a></button></td>
+        <td class="text-center"><button type="button" class="btn btn-danger"><a th:href="@{/EliminarEmpresa/{id}(id=${empresa.id})}">Eliminar</a></button></td>
     </tr>
 </table>
 
     <!-- vamos a crear un boton que sirva para agregar nuevas empresas -->
-    <button type="button" class="btn btn-info"><a th:href="@{/AgregarEmpresa}">Agregar Nueva Empresa</a></button>
 
-</div>
+    <!-- <th><button type="button" class="btn btn-primary"><a th:href="@{/VerEmpleados}">Ver lista de Empleados</a></button></th>-->
+    <th><a href="javascript: history.go(-1)" style="float: right;" class="btn btn-info" role="button">Atrás</a></th>
+    <br>
+    <br>
+    <th><a href="/" style="float: right;"class="btn btn-primary" role="button">Inicio</a></th>
 
-<script th:inline="javascript">
-    window.onload=function(){
+ </div>
 
-        var msg= [[${mensaje}]];
-        if (msg == "saveOK"){
-            Command : toastr["success"]("Empresa creada con éxito!")
-            }
-        else if (msg == "updateOK"){
-            Command : toastr["success"]("Empresa actualizada con éxito!")
-        }
-        else if (msg == "deleteOK"){
-            Command : toastr["success"]("Empresa eliminada con éxito!")
-        }
-        else if (msg == "deleteError"){
-            Command : toastr["error"]("Empresa no ha sido eliminada!")
-        }
-        toastr.options={
-            "positionClass": "toast-top-right",
-            "showDuration":"300",
-            "showMethod":"fadeIn",
-            "hideMethod":"fadeOut",
-        }
+ <script th:inline="javascript">
+     window.onload=function(){
+
+         var msg= [[${mensaje}]];
+         if (msg == "saveOK"){
+             Command : toastr["success"]("Empresa creada con éxito!")
+             }
+         else if (msg == "updateOK"){
+             Command : toastr["success"]("Empresa actualizada con éxito!")
+         }
+         else if (msg == "deleteOK"){
+             Command : toastr["success"]("Empresa eliminada con éxito!")
+         }
+         else if (msg == "deleteError"){
+             Command : toastr["error"]("Empresa no ha sido eliminada!")
+         }
+         toastr.options={
+             "positionClass": "toast-top-right",
+             "showDuration":"300",
+             "showMethod":"fadeIn",
+             "hideMethod":"fadeOut",
+         }
 
 
-    }
+     }
 
-</script>
+ </script>
 
-</body>
-</html>
+ </body>
+ </html>
 
 
 

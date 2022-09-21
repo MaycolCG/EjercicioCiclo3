@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>Empleados</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.js"></script>
+  <style>
+    a{
+    color:white;
+    }
+    a:hover {
+    color: black;
+    text-decoration:none;
+    }
+</style>
+</head>
+<body style="background-color:HoneyDew;">
+</body>
+<body>
+
+<div class="container">
+  <p th:inline="text" class="label label-default" style="float: right;"  >User: [[${#httpServletRequest.remoteUser}]]</p>
+  <br>
+  <br>
+  <button type="button" class="btn btn-danger" style="float:right"><a th:href="@{/logout}">Cerrar Sesión</a></button>
+  <br>
+  <th><h1> Lista de Empleados <button type="button" style="float: right;" class="btn btn-success"><a th:href="@{/AgregarEmpleado}" >Agregar Nuevo Empleado</a></button></h1></th>
+  <!--Dibujamos la tabla-->
+  <br><table class="table table-bordered">
+  <tr>
+    <th class="text-center">ID</th>
+    <th class="text-center">Nombre</th>
+    <th class="text-center">Correo</th>
+    <th class="text-center">Empresa</th>
+    <th class="text-center">Rol</th>
+    <th class="text-center">Estado</th>
+    <th class="text-center">Movimientos</th>
+    <th class="text-center">Editar</th>
+    <th class="text-center">Eliminar</th>
+  </tr>
+
+  <!--Llenamos la tabla dibujada-->
+  <!--En nuestro controller, creamos en viewEmpleados un modelo con un atributo llamado emplelist donde esta guardada la lista de todos los empleados-->
+  <tr th:each="empleado : ${emplelist}">
+    <td th:text="${empleado.id}"></td>
+    <td th:text="${empleado.nombre}"></td>
+    <td th:text="${empleado.correo}"></td>
+    <td th:text="${empleado.empresa.nombre}"></td>
+    <td th:if="${empleado.rol=='ROLE_ADMIN'}">Administrativo</td>
+    <td th:if="${empleado.rol=='ROLE_USER'}">Operativo</td>
+    <td th:if="${empleado.estado==true}">Activo</td>
+    <td th:if="${empleado.estado==false}">Inactivo</td>
+    <td class="text-center"><button type="button" class="btn btn-info"><a th:href="@{/Empleado/{id}/Movimientos(id=${empleado.id})}">Ver</a></button></td>
+    <td class="text-center"><button type="button" class="btn btn-warning"><a th:href="@{/EditarEmpleado/{id}(id=${empleado.id})}">Editar</a></button></td>
+    <td class="text-center"><button type="button" class="btn btn-danger"><a th:href="@{/EliminarEmpleado/{id}(id=${empleado.id})}">Eliminar</a></button></td>
+  </tr>
+</table>
+
+  <!-- vamos a crear un boton que sirva para agregar nuevas empresas -->
+
+  <!-- <input type="button" class="btn btn-info" value="Agregar Empresa" onclick="javascript:window.open('/AgregarEmpresa','','width=600,height=400,left=50,top=50,toolbar=yes');" /> -->
+
+    <th><a href="javascript: history.go(-1)" style="float: right;" class="btn btn-info" role="button">Atrás</a></th>
+  <br>
+  <br>
+  <th><a href="/" style="float: right;"class="btn btn-primary" role="button">Inicio</a></th>
+</div>
+
+<script th:inline="javascript">
+    window.onload=function(){
+
+        var msg= [[${mensaje}]];
+        if (msg == "saveOK"){
+            Command : toastr["success"]("Registro de Empleado creado con éxito!")
+            }
+        else if (msg == "updateOK"){
+            Command : toastr["success"]("Registro de Empleado actualizado con éxito!")
+        }
+        else if (msg == "deleteOK"){
+            Command : toastr["success"]("Registro de Empleado eliminado con éxito!")
+        }
+        else if (msg == "deleteError"){
+            Command : toastr["error"]("Registro de Empleado no ha sido eliminado!")
+        }
+        toastr.options={
+            "positionClass": "toast-top-right",
+            "showDuration":"300",
+            "showMethod":"fadeIn",
+            "hideMethod":"fadeOut",
+        }
+    }
+
+</script>
+</body>
+</html>
