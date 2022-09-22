@@ -9,7 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 //Le decimos al spring que es una clase de servicios
-@Service
+@Service //
 public class EmpresaService {
     @Autowired //conectamos esta clase con el repositorio empresa
     EmpresaRepository empresaRepository;
