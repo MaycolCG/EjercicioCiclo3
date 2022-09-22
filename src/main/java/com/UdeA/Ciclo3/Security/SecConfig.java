@@ -34,11 +34,11 @@ public class SecConfig extends WebSecurityConfigurerAdapter {
     protected void configure(HttpSecurity http) throws Exception {
         http.authorizeRequests()
                 .antMatchers("/VerEmpresas/**").hasRole("ADMIN")
-                .antMatchers("/VerEmpleados/**").hasRole("ADMIN")
                 .antMatchers("/Empresa/**").hasRole("ADMIN")
                 .antMatchers("/GuardarEmpresa/**").hasRole("ADMIN")
                 .antMatchers("/EditarEmpresa/**").hasRole("ADMIN")
                 .antMatchers("/Empleado/**").hasRole("ADMIN")
+                .antMatchers("/VerEmpleados/**").hasRole("ADMIN")
                 .antMatchers("/GuardarEmpleado/**").hasRole("ADMIN")
                 .antMatchers("/EditarEmpleado/**").hasRole("ADMIN")
                 .antMatchers("/VerMovimientos/**").hasAnyRole("ADMIN","USER")
